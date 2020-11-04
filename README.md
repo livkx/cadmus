@@ -9,6 +9,8 @@ Cadmus is a graphical application which allows you to remove background noise fr
 </p>
 
 ### About & Usage
+This is my fork of Cadmus after the original author seems to have abandoned. The original author is [Josh Richardson](https://github.com/josh-richardson/).
+
 Whilst software exists on Windows & MacOS (Krisp, RTX Voice, etc) to remove background noise from recorded audio in real-time, no user-friendly solution seemed to exist on Linux. Cadmus was written to address this shortcoming, allowing users to remove background noise from audio in Discord/Zoom/Skype/Slack/etc calls without having to use the commandline. It is primarily a GUI frontend for @werman's [PulseAudio Noise Suppression Plugin](https://github.com/werman/noise-suppression-for-voice).
 
 When you run Cadmus, you'll see a new notification icon showing a microphone in your chosen shell. On click, you'll be able to select the microphone whose noise you wish to suppress. Cadmus will then create a new PulseAudio microphone named `Cadmus Denoised Output`, which will reflect the denoised output of the chosen microphone. You should then be able to select this as an input in any application of your choice. Note that if you're currently recording audio, you'll have to stop recording and start again in order for changes to occur - streams which are currently being recorded will not be hot-swapped to the new input.      
@@ -48,6 +50,11 @@ Next, clone the [noise suppression for voice repository](https://github.com/werm
 
 Having done this, you can invoke `fbs run` in the Cadmus project root directory to run Cadmus from source.
 
+### Building .deb and .zip
+Make sure you're in the venv as above, and run `fbs gengpgkey` to generate a GPG signing key and run `fbs register` to make an fbs account or `fbs login` if you already have one. Private keys and secret.json is already .gitignored. Now `cd build` and `./release.sh vernumber`
+
+I'm pretty sure I'm using FBS workflow wrong here so if anyone has improvements let me know.
+
 ### Roadmap
 - [ ] Add some tests
 - [ ] Gracefully start up & shut down, removing loaded modules on exit
@@ -56,4 +63,5 @@ Having done this, you can invoke `fbs run` in the Cadmus project root directory 
 
 
 #### Donate
+ORIGINAL AUTHOR IS NO LONGER UPDATING THIS PROJECT - CONSIDER BEFORE USING THE BELOW
 Various people have asked me how they can donate to this project. As a consequence, I've created a [Patreon](https://www.patreon.com/josh_richardson)

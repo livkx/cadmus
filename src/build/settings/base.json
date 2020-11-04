@@ -3,6 +3,6 @@
     "author": "Joshua Richardson",
     "main_module": "src/main/python/main.py",
     "version": "1.0",
-    "gpg_key": "517DA3400EED7D65F736EA33FF4A765C2EF47477",
-    "gpg_name": "Joshua Richardson"
+    "gpg_key": "F053E7C4CA93D85E317C55AB4AFC3B34233FDB91",
+    "gpg_name": "livkx"
 }
