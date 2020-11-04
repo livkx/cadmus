@@ -22,7 +22,7 @@ make
 cd ../../
 rm -rf noise-suppression-for-voice
 
-mkdir releases/$1
+mkdir -p releases/$1
 
 # build FBS VM
 fbs buildvm ubuntu
