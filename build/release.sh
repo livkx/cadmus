@@ -25,6 +25,7 @@ rm -rf noise-suppression-for-voice
 mkdir -p releases/$1
 
 # build FBS VM
+echo $PWD
 fbs buildvm ubuntu
 
 # build docker run command identical to fbs, but inject our own bashrc
