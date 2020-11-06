@@ -44,7 +44,7 @@ Cadmus has been tested on Arch Linux, Debian 10 and Ubuntu 20.04. It should work
 
 
 ### Development
-Cadmus is written in Python 3.6, making use of PyQt5 and the Fman Build System (fbs). To get the project up and running, first clone the repository. Next create a virtualenv using Python 3.6 (fbs doesn't support any higher), and run `pip install -r requirements.txt`. 
+Cadmus is written in Python 3.6, making use of PyQt5 and the Fman Build System (fbs). To get the project up and running, first clone the repository. Next create a virtualenv using Python 3.6 (fbs doesn't support any higher), you can use `python3 -m venv cadmusvenv` - I've already set up .gitignore to use cadmusvenv as the venv name but you could use something different and add to your .gitignore. Now just run `source cadmusvenv/bin/active` then `pip install -r requirements.txt`.
 
 Next, clone the [noise suppression for voice repository](https://github.com/werman/noise-suppression-for-voice), and build it (see the readme in the repo for more details). Locate the output file `librnnoise_ladspa.so` and move it to `src/main/resources/base`. Alternatively you can download the zip archive & locate the relevant file from the resources section of the repository, if you don't want to build from source.
 
@@ -53,14 +53,16 @@ Having done this, you can invoke `fbs run` in the Cadmus project root directory 
 ### Building .deb and .zip
 Make sure you're in the venv as above, and run `fbs gengpgkey` to generate a GPG signing key and run `fbs register` to make an fbs account or `fbs login` if you already have one. Private keys and secret.json is already .gitignored. Now `cd build` and `./release.sh vernumber`
 
-I'm pretty sure I'm using FBS workflow wrong here so if anyone has improvements let me know.
+I'm pretty sure I'm using FBS workflow wrong here so if anyone has improvements let me know. In addition the .zip build is basically unusable so this is on the to-do list of spaghetti to remove.
 
 ### Roadmap
-- [ ] Add some tests (wtf does this mean?)
-- [ ] Gracefully start up & shut down, removing loaded modules on exit
-- [ ] Run on startup & use a default microphone?
-- [ ] Deploy on AUR
-
+- [ ] Add some tests (wtf does this mean? CI?)
+- [ ] Proper settings window, as well as quick tray settings for enabling and changing mic.
+- [ ] Settings for run on startup & use a default microphone, custom cadmus microphone name.
+- [ ] Gracefully start up & shut down, removing loaded modules on exit (current unload is very brutal)
+- [ ] AUR package for arch btw
+- [ ] Probably a good idea to nuke fbs considering it's designed for cross platform deployment but we're linux only and it's pointlessly causing problems
+- [ ] Arm64 support.
 
 #### Donate
 ORIGINAL AUTHOR IS NO LONGER UPDATING THIS PROJECT - CONSIDER BEFORE USING THE BELOW
