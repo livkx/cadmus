@@ -56,7 +56,7 @@ Make sure you're in the venv as above, and run `fbs gengpgkey` to generate a GPG
 I'm pretty sure I'm using FBS workflow wrong here so if anyone has improvements let me know.
 
 ### Roadmap
-- [ ] Add some tests
+- [ ] Add some tests (wtf does this mean?)
 - [ ] Gracefully start up & shut down, removing loaded modules on exit
 - [ ] Run on startup & use a default microphone?
 - [ ] Deploy on AUR

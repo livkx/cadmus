@@ -69,7 +69,6 @@ class AudioMenuItem(QAction):
         self.mic_name = mic_name
         self.setStatusTip("Use the %s as an input for noise suppression" % text)
 
-
 class CadmusApplication(QSystemTrayIcon):
     control_level = 50
 
@@ -82,6 +81,7 @@ class CadmusApplication(QSystemTrayIcon):
 
         self.disable_suppression_menu = QAction("Disable Noise Suppression")
         self.enable_suppression_menu = QMenu("Enable Noise Suppression")
+	self.settings_menu = QMenu("Settings")
         self.level_section = None
         self.slider = QSlider(Qt.Horizontal)
         self.slider.setTickInterval(5)
@@ -124,11 +124,15 @@ class CadmusApplication(QSystemTrayIcon):
             )
             self.enable_suppression_menu.addAction(mic_menu_item)
             mic_menu_item.triggered.connect(self.enable_noise_suppression)
-
         self.exit_menu.triggered.connect(self.quit)
+
+	#Add the settings options into the menu here
+
+	self.settings_menu.addAction(setting_)
 
         main_menu.addMenu(self.enable_suppression_menu)
         main_menu.addAction(self.disable_suppression_menu)
+	main_menu.addMenu(self.settings_menu)
         main_menu.addAction(self.exit_menu)
 
         # Add slider widget
