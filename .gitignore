@@ -5,3 +5,4 @@ cadmusvenv
 src/sign
 src/build/settings/secret.json
 src/main/python/__pycache__
+.vscode
