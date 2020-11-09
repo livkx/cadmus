@@ -11,6 +11,7 @@ import pulsectl
 
 pulse = pulsectl.Pulse("t")
 
+#prefixid = "cadmus_mic_"
 
 class CadmusPulseInterface:
     @staticmethod
@@ -28,24 +29,24 @@ class CadmusPulseInterface:
 
         pulse.module_load(
             "module-null-sink",
-            "sink_name=mic_denoised_out "
+            "sink_name=cadmus_mic_denoised_out "
             "sink_properties=\"device.description='Cadmus Microphone Sink'\"",
         )
         pulse.module_load(
             "module-ladspa-sink",
-            "sink_name=mic_raw_in sink_master=mic_denoised_out label=noise_suppressor_mono plugin=%s control=%d "
+            "sink_name=cadmus_mic_raw_in sink_master=cadmus_mic_denoised_out label=noise_suppressor_mono plugin=%s control=%d "
             "sink_properties=\"device.description='Cadmus Raw Microphone Redirect'\""
             % (cadmus_lib_path, CadmusApplication.control_level),
         )
 
         pulse.module_load(
             "module-loopback",
-            "latency_msec=1 source=%s sink=mic_raw_in channels=1" % mic_name,
+            "latency_msec=1 source=%s sink=cadmus_mic_raw_in channels=1" % mic_name,
         )
 
         pulse.module_load(
             "module-remap-source",
-            "master=mic_denoised_out.monitor source_name=denoised "
+            "master=cadmus_mic_denoised_out.monitor source_name=cadmus_mic_denoised "
             "source_properties=\"device.description='Cadmus Denoised Microphone (Use me!)'\"",
         )
 
@@ -55,6 +56,7 @@ class CadmusPulseInterface:
     def unload_modules():
         CadmusPulseInterface.cli_command(
             [
+                # Identify all of these by: pactl list sinks short | grep mic_
                 "unload-module module-loopback",
                 "unload-module module-null-sink",
                 "unload-module module-ladspa-sink",
